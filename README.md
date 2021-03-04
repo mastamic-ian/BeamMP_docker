@@ -20,6 +20,8 @@ Basic setup replace YOUR_AUTHKEY with the AuthKey you get from beammp.
 | `-e use`         | Which folder your mods are in. Best to leave it at default                                     | `Resources` |
 | `-e AuthKey`     | The authentication key used by the server. It is used to identify your server and is mandatory |
 
+to add mods bind "/beammp/BeamMP-Server/Resources/Client" to a local directorty.
+
 see https://wiki.beamng-mp.com/en/home/server-installation for more info.
 
-last update 10/02/21
+last update 4/03/21

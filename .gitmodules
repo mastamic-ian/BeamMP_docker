@@ -1,0 +1,3 @@
+[submodule "BeamMP-Server"]
+	path = BeamMP-Server
+	url = https://github.com/BeamMP/BeamMP-Server

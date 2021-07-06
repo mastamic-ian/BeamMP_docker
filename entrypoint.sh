@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/sh 
 
 cat <<EOF >Server.cfg
 # This is the BeamMP Server Configuration File v0.60
@@ -14,4 +14,4 @@ use = "${use}" # Resource file name
 AuthKey = "${AuthKey}" # Auth Key
 EOF
 
-exec ./BeamMP-Server
+exec ./BeamMP-Server-linux

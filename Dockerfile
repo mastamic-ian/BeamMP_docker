@@ -1,5 +1,5 @@
 FROM ubuntu
-
+ 
 WORKDIR /
  
 RUN mkdir beammp
@@ -12,6 +12,7 @@ RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
 ENV Version="master"
  
 RUN apt-get update && apt-get install -y \
+    curl\
     make\
     cmake\
     g++\
@@ -21,12 +22,8 @@ RUN apt-get update && apt-get install -y \
     libcurl4-openssl-dev\
     libboost-all-dev\
     libssl-dev
- 
-COPY BeamMP-Server/ /beammp/BeamMP-Server/
- 
-WORKDIR /beammp/BeamMP-Server
- 
-RUN cmake . && make
+
+RUN curl https://github.com/BeamMP/BeamMP-Server/releases/download/v2.1.2/BeamMP-Server-linux
  
 COPY entrypoint.sh .
 
@@ -42,5 +39,7 @@ ENV \
      use="Resources" \
      AuthKey=""
 
-EXPOSE 30814
+EXPOSE 30814/tcp
+EXPOSE 30814/udp
+
 CMD ["./entrypoint.sh" ]

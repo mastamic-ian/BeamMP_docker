@@ -25,6 +25,7 @@ RUN apt-get update && apt-get install -y \
 RUN wget https://github.com/BeamMP/BeamMP-Server/releases/download/v2.1.2/BeamMP-Server-linux
  
 COPY entrypoint.sh .
+RUN chmod 777 entrypoint.sh
 
 ENV \
      Debug="false" \

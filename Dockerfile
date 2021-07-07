@@ -1,5 +1,5 @@
 FROM ubuntu
-
+ 
 WORKDIR /
  
 RUN mkdir beammp
@@ -12,21 +12,17 @@ RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
 ENV Version="master"
  
 RUN apt-get update && apt-get install -y \
+    curl\
+    wget\
     make\
     cmake\
     g++\
     liblua5.3\
     libz-dev\
     rapidjson-dev\
-    libcurl4-openssl-dev\
-    libboost-all-dev\
-    libssl-dev
- 
-COPY BeamMP-Server/ /beammp/BeamMP-Server/
- 
-WORKDIR /beammp/BeamMP-Server
- 
-RUN cmake . && make
+    libcurl4-openssl-dev
+
+RUN wget https://github.com/BeamMP/BeamMP-Server/releases/download/v2.1.2/BeamMP-Server-linux
  
 COPY entrypoint.sh .
 
@@ -34,13 +30,16 @@ ENV \
      Debug="false" \
      Private="true" \
      Port="30814" \
-     Cars="1" \
+     MaxCars="1" \
      MaxPlayers="10" \
-     Map="/levels/gridmap/info.json" \
+     Map="/levels/gridmap_v2/info.json" \
      Name="BeamMP New Server" \
      Desc="BeamMP Default Description" \
-     use="Resources" \
+     ResourceFolder="Resources" \
      AuthKey=""
 
-EXPOSE 30814
+EXPOSE 30814/tcp
+EXPOSE 30814/udp
+
+#CMD ["/bin/bash" ]
 CMD ["./entrypoint.sh" ]

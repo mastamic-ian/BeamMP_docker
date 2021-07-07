@@ -1,6 +1,5 @@
 #!/bin/sh
 
-cat <<EOF >Server.cfg
 cat <<EOF >ServerConfig.toml
 [General]
 Debug = ${Debug} # true or false to enable debug console output
